@@ -5,9 +5,12 @@
 #
 
 import logging
+
+import subsystems.botsubsys
 log = logging.Logger('P212-robot')
 
 import wpilib
+from wpilib import XboxController
 import commands2
 import commands2.button
 
@@ -46,6 +49,9 @@ class RobotContainer:
         self.my_example_ss = subsystems.example_ss.ExampleSubsystem()
 
         # Configure the button bindings
+        self.motorsub = subsystems.botsubsys.TestBotSubsystemClass()
+        self.DriverController = XboxController(0)
+        self.OperatorController = XboxController(1)
         self.configureButtonBindings()
 
 

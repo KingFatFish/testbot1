@@ -31,6 +31,8 @@ elec_data = {
   ##
   "my_sensor_DIO_port": 7,
   "my_motor_CAN_ID": 11,
+  "test_motor_CAN_ID": 0,
+  "motor_speed": 0.5,
 }
 ELEC = namedtuple("Data", elec_data.keys())(**elec_data)
 
