@@ -10,17 +10,19 @@ class testmotorstuff(commands2.Command):
     def __init__(self, botsubsys: TestBotSubsystemClass) -> None:
         self.addRequirements(botsubsys)
         self.motorsub = botsubsys
-        self.controller = XboxController(1)
+ #       self.controller = XboxController(1)
 
     def initialize(self):
         logger.info(" test motor run command initialized")
 
     def execute(self):
-        if self.controller.getAButton():
-            self.motorsub.motorrun()
-        else:
-            self.motorsub.motorstop()
+        self.motorsub.motorrun()
         logger.info("yes")
+ #       if self.controller.getAButton():
+ #           self.motorsub.motorrun()
+ #       else:
+ #           self.motorsub.motorstop()
+ #       logger.info("yes")
 
     def isFinished(self):
         return False
@@ -37,10 +39,9 @@ class MotorStop(commands2.Command):
 
     def execute(self):
         self.motorsub.motorstop()
-        logger.info("stoppppping")
 
     def isFinished(self):
-        return False
+        return True
     
     def end(self, interrupted):
         self.motorsub.motorstop()

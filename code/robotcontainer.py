@@ -17,6 +17,8 @@ import commands2.button
 from constants import OP
 import subsystems.example_ss
 from commands.example_commands import TemplateCommand
+from subsystems import botsubsys
+from commands.botcmds import testmotorstuff, MotorStop
 
 
 class RobotContainer:
@@ -50,8 +52,7 @@ class RobotContainer:
 
         # Configure the button bindings
         self.motorsub = subsystems.botsubsys.TestBotSubsystemClass()
-        self.DriverController = XboxController(0)
-        self.OperatorController = XboxController(1)
+        self.OperatorController = commands2.button.CommandXboxController(1)
         self.configureButtonBindings()
 
 
@@ -68,10 +69,11 @@ class RobotContainer:
         ##       buttons you choose.)
         ##
         # run the example command when the left bumper is pressed
-        self.stick.leftBumper().onTrue(TemplateCommand(self.my_example_ss))
-
+    
         # run the example command when the X button is pressed
-        self.stick.x().onTrue(TemplateCommand(self.my_example_ss))
+    
+        self.OperatorController.a().onTrue(testmotorstuff(self.motorsub))
+        self.OperatorController.a().onFalse(MotorStop(self.motorsub))
 
 
     def all_subsystems(self):
